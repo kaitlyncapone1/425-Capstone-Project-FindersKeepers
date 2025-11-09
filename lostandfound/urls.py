@@ -5,11 +5,13 @@ urlpatterns = [
     path('', views.home, name='home'),
 ]
 
+from django.contrib import admin
 from django.urls import path
-from . import views
+from lostandfound import views
 
 urlpatterns = [
-    path('', views.home, name='home'),        # Home page
-    path('about/', views.about, name='about'), # About page
-    path('contact/', views.contact, name='contact'), # Contact page
+    path('admin/', admin.site.urls),
+    path('', views.home, name='home'),
+    path('about/', views.about, name='about'),
+    path('contact/', views.contact, name='contact'),
 ]

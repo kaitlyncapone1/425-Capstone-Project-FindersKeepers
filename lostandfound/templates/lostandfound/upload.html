@@ -1,0 +1,14 @@
+{% extends 'lostandfound/base.html' %}
+
+{% block content %}
+<h1>Upload Found Item</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Upload Item</button>
+</form>
+
+<br>
+<a href="{% url 'main_feed' %}">Back to Feed</a>
+{% endblock %}

@@ -1,10 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from .models import FoundItem
+from .forms import FoundItemForm
 
-# Create your views here.
-from django.http import HttpResponse
-
-
-from django.shortcuts import render
+def landing(request):
+    return render(request, 'lostandfound/landing.html')
 
 def home(request):
     return render(request, 'lostandfound/home.html')
@@ -12,5 +11,23 @@ def home(request):
 def about(request):
     return render(request, 'lostandfound/about.html')
 
-def contact(request):
-    return render(request, 'lostandfound/contact.html')
+def feed(request):
+    return render(request, 'lostandfound/feed.html')
+
+def main_feed(request):
+    query = request.GET.get('q')
+    if query:
+        items = FoundItem.objects.filter(keywords__icontains=query)
+    else:
+        items = FoundItem.objects.all().order_by('-date_found')
+    return render(request, 'lostandfound/main_feed.html', {'items': items})
+
+def upload_item(request):
+    if request.method == 'POST':
+        form = FoundItemForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('main_feed')
+    else:
+        form = FoundItemForm()
+    return render(request, 'lostandfound/upload.html', {'form': form})

@@ -1,0 +1,29 @@
+{% extends 'lostandfound/base.html' %}
+
+{% block content %}
+<h1>Lost & Found Feed</h1>
+
+<div class="search-box">
+    <form method="GET">
+        <input type="text" name="q" placeholder="Search by keywords..." value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+    </form>
+</div>
+
+<a href="{% url 'upload' %}">Upload Found Item</a>
+
+<hr>
+
+{% for item in items %}
+    <div style="border: 1px solid #ccc; padding: 15px; margin: 10px; border-radius: 5px;">
+        <h3>{{ item.title }}</h3>
+        <p><strong>Description:</strong> {{ item.description }}</p>
+        <p><strong>Location:</strong> {{ item.location }}</p>
+        <p><strong>Date Found:</strong> {{ item.date_found }}</p>
+        <p><strong>Contact:</strong> {{ item.contact_info }}</p>
+        <p><strong>Keywords:</strong> {{ item.keywords }}</p>
+    </div>
+{% empty %}
+    <p>No items found.</p>
+{% endfor %}
+{% endblock %}

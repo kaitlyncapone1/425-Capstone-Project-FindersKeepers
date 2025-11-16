@@ -9,12 +9,13 @@
         <h1>Lost and Found</h1>
     </header>
 
-    <nav>
-        <!-- Main links -->
-        <a href="{% url 'home' %}">Home</a> |
-        <a href="{% url 'feed' %}">Feed Page</a> |
-        <a href="{% url 'about' %}">About</a> |
-        
+ <nav>
+    <a href="{% url 'home' %}">Home</a> |
+    <a href="{% url 'main_feed' %}">Lost & Found Feed</a> |
+    <a href="{% url 'upload' %}">Upload Item</a> |
+    <a href="{% url 'about' %}">About</a> |
+    ...
+</nav>
 
         <!-- Auth links -->
         {% if user.is_authenticated %}

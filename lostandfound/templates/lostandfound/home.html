@@ -1,6 +1,20 @@
 {% extends 'lostandfound/base.html' %}
 
 {% block content %}
-<h2>welcome page!</h2>
-<p>Click the links above to visit other pages. we will put binghamton logo, brief intro here as a welcome </p>
+<h2>Home Page</h2>
+<p>Welcome to Finders Keepers - Lost and Found App!</p>
+
+<div style="margin: 20px 0;">
+    <a href="{% url 'main_feed' %}" style="display: inline-block; padding: 10px 20px; background: #4CAF50; color: white; text-decoration: none; border-radius: 5px; margin: 5px;">
+        📋 View Lost & Found Feed
+    </a>
+    
+    <a href="{% url 'upload' %}" style="display: inline-block; padding: 10px 20px; background: #2196F3; color: white; text-decoration: none; border-radius: 5px; margin: 5px;">
+        📤 Upload Found Item
+    </a>
+</div>
+
+<h3>About This App</h3>
+<p>Found something? Upload it here so the owner can find it!</p>
+<p>Lost something? Search our feed to see if someone found it!</p>
 {% endblock %}

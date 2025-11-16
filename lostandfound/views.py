@@ -11,9 +11,6 @@ def home(request):
 def about(request):
     return render(request, 'lostandfound/about.html')
 
-def feed(request):
-    return render(request, 'lostandfound/feed.html')
-
 def main_feed(request):
     query = request.GET.get('q')
     if query:

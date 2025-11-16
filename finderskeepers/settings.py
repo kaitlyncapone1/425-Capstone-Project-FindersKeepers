@@ -20,7 +20,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-5va=_exf=&xk@_=3*8%mgn8mi%o%_di67fcr)*&9*@vwlt_jo@"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -84,6 +83,12 @@ DATABASES = {
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
 
+#hiding secret key
+import os
+from dotenv import load_dotenv
+load_dotenv()  # reads the .env file
+SECRET_KEY = os.getenv("SECRET_KEY")
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator",
@@ -121,3 +126,10 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Where to send users after login / logout
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
+# URL name for the login page (used by @login_required, etc.)
+LOGIN_URL = 'login'

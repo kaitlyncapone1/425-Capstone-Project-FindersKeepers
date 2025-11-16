@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>Welcome to Binghamton's FindersKeeper Website!</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to FindersKeepers</h1>
+    <p>Your lost and found site</p>
+    <a href="{% url 'home' %}"><button>Enter</button></a>
+</body>
+</html>

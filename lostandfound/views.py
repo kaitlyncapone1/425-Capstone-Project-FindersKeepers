@@ -21,7 +21,7 @@ def main_feed(request):
 
 def upload_item(request):
     if request.method == 'POST':
-        form = FoundItemForm(request.POST, request.FILES)
+        form = FoundItemForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('main_feed')

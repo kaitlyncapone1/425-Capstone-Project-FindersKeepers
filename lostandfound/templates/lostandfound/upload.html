@@ -3,7 +3,7 @@
 {% block content %}
 <h1>Upload Found Item</h1>
 
-<form method="POST" enctype="multipart/form-data">
+<form method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Upload Item</button>

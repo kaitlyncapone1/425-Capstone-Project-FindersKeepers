@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from .models import FoundItem
 from .forms import FoundItemForm
 
@@ -11,6 +12,9 @@ def home(request):
 def about(request):
     return render(request, 'lostandfound/about.html')
 
+def feed(request):
+    return render(request, 'lostandfound/feed.html')
+
 def main_feed(request):
     query = request.GET.get('q')
     if query:
@@ -19,6 +23,7 @@ def main_feed(request):
         items = FoundItem.objects.all().order_by('-date_found')
     return render(request, 'lostandfound/main_feed.html', {'items': items})
 
+@login_required
 def upload_item(request):
     if request.method == 'POST':
         form = FoundItemForm(request.POST)

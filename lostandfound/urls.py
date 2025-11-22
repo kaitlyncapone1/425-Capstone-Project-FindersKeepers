@@ -9,4 +9,7 @@ urlpatterns = [
     path('upload/', views.upload_item, name='upload'),
     path('login/', views.login_view, name='login'),
     path('signup/', views.signup, name='signup'),
+    path('post/<int:post_id>/', views.post_detail, name='post_detail'),  
+    path('contact/<int:post_id>/', views.contact_post_owner, name='contact_post_owner'),
+    path('contact/success/', views.contact_success, name='contact_success'),
 ]

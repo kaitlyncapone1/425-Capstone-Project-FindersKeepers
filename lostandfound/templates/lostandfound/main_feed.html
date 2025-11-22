@@ -21,6 +21,7 @@
         <p><strong>Location:</strong> {{ item.location }}</p>
         <p><strong>Date Found:</strong> {{ item.date_found }}</p>
         <p><strong>Keywords:</strong> {{ item.keywords }}</p>
+        <a href="{% url 'contact_post_owner' item.id %}" class="btn btn-primary">Contact</a>
     </div>
 {% empty %}
     <p>No items found.</p>

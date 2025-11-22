@@ -1,0 +1,13 @@
+{% extends 'lostandfound/base.html' %}
+
+{% block content %}
+<h1>Contact {{ post.title }} Owner</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Send Message</button>
+</form>
+
+<a href="{% url 'main_feed' %}">Back to Feed</a>
+{% endblock %}

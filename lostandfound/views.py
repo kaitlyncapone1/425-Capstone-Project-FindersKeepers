@@ -108,13 +108,16 @@ def contact_success(request):
     return render(request, 'lostandfound/contact_success.html')
 
 
-
 def signup(request):
     if request.method == "POST":
-        form = EmailUserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("login")
+        form = EmailUserCreationForm(request.POST)  # or UserCreationForm
+        try:
+            if form.is_valid():
+                form.save()
+                return redirect("login")
+        except Exception as e:
+            # Catch any server-side exception (e.g., duplicate username)
+            messages.error(request, f"Error creating account: {e}")
     else:
         form = EmailUserCreationForm()
 

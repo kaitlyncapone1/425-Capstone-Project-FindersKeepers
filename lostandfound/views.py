@@ -25,10 +25,11 @@ def feed(request):
 def main_feed(request):
     query = request.GET.get('q')
     if query:
-        items = FoundItem.objects.filter(keywords__icontains=query)
+        items = FoundItem.objects.filter(keywords__icontains=query).order_by('-date_found')
     else:
         items = FoundItem.objects.all().order_by('-date_found')
     return render(request, 'lostandfound/main_feed.html', {'items': items})
+
 
 @login_required
 def upload_item(request):

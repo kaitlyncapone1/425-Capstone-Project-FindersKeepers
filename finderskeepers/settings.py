@@ -85,8 +85,8 @@ DATABASES = {
 #hiding secret key
 import os
 from dotenv import load_dotenv
-load_dotenv()  # reads the .env file
-SECRET_KEY = os.getenv("SECRET_KEY")
+load_dotenv() 
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -132,12 +132,12 @@ LOGOUT_REDIRECT_URL = '/'
 
 # URL name for the login page (used by @login_required, etc.)
 LOGIN_URL = 'login'
+ 
+DEBUG = os.environ.get("DEBUG") == "True"
+SECRET_KEY = os.environ.get("SECRET_KEY")
+DEFAULT_FROM_EMAIL=os.environ.get("DEFAULT_FROM_EMAIL")
 
-# to send email via contact page: 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER=os.environ.get("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD=os.environ.get("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+# sendgrid email settings
+EMAIL_BACKEND="sendgrid_backend.SendgridBackend"
+SENDGRID_API_KEY=os.environ.get("SENDGRID_API_KEY")
+

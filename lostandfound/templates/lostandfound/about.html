@@ -1,22 +1,32 @@
 {% extends 'lostandfound/base.html' %}
 
 {% block content %}
-<h2>About Finders Keepers</h2>
+<h2>About FindersKeepers</h2>
 
 <p>
-  Finders Keepers is a lightweight, privacy-respecting way for students, faculty,
-  and staff to reconnect with lost items without dumping personal data onto public
-  platforms. Instead of scrolling through endless photo dumps, our app focuses on a
-  simple workflow: from the person who finds an item to the person who can prove they
-  own it.
+  FindersKeepers is a convenient way for students, faculty,
+  and staff to reconnect with their lost items without dumping personal data onto public
+  platforms. Instead of scrolling through endless snapchat stories, our app 
+  is all about simple, direct communication:
+  connecting the person who finds an item with the person who owns it.
+</p>
+
 </p>
 
 <h3>How it works</h3>
+
+  <strong>Finders</strong> = People who find an item.<br>
+        <strong>Keepers</strong> = People who lost the item - the original owner! 
+    </p>
 <ul>
   <li><strong>Post a find:</strong> Finders create short, anonymous listings without photos or identifying details.</li>
-  <li><strong>Subscribe to keywords:</strong> Keepers (people who lost items) follow keywords like “red hoodie,” “ID card,” or “headphones” and get notified when a match appears.</li>
-  <li><strong>Prove ownership:</strong> If a listing looks right, the keeper sends a private confirming photo to show they really own the item before any chatting starts.</li>
-  <li><strong>Safe relay chat:</strong> Once verified, a temporary relay chat opens so the finder and keeper can arrange a handoff. Messages are filtered for spam/profanity and aren’t stored long-term.</li>
+  <li><strong>Subscribe to keywords:</strong> Keepers follow keywords like “red hoodie”, “ID card”, or “headphones” and get notified when a match appears.</li>
+  <li><strong>Exchange info:</strong> If a listing seems familiar, the keeper can connect with the finder via the 'contact' button. An automatic email will be sent to the finder, in hopes of connecting the lost item back to its owner!
+  <ul>
+        <li>We encourage finders to verify proof of ownership before returning the item, including through pictures via email.</li>
+        <li>We are not responsible for incorrect exchanges.</li>
+    </ul>
+</li>
 </ul>
 
 <h3>Why we built it</h3>
@@ -28,14 +38,23 @@
 <ul>
   <li>Protects user privacy with anonymous listings and limited data collection.</li>
   <li>Makes impostor claims harder by shifting proof to real owners.</li>
-  <li>Stays accessible to the whole campus community, not just one app or social site.</li>
+  <li>Is accessible to the whole campus community, not just one app or social site.</li>
 </ul>
 
 <h3>Project team &amp; support</h3>
 <p>
-  This app was developed as a DIDA 425 capstone project with guidance from
-  Dr. Jacopo Mazzoni. Our team shares three core values: compromise, ambition, and
-  punctuality. We’re committed to maintaining and improving the site so it continues
-  to run smoothly for the campus community.
+  This website was developed as a DIDA 425 capstone project with guidance from
+  Dr. Jacopo Mazzoni.
+  It is all coded using django framework.
+  We’re committed to maintaining and improving the site so it continues
+  to run smoothly for the campus community. <br> <br>
+
+  We hope that you find our website useful! This project was created to build something unique for campus, a solution
+  that does not already exist. With this in mind, our group focused on addressing
+  common issues faced by people on our campus. 
+  <strong>Enjoy!</strong>
+  <br> <br>
+  Kaitlyn Capone, Jackie Chen, and Dilian Patel <br>
+  DIDA 425 Professor Formalhaut
 </p>
 {% endblock %}

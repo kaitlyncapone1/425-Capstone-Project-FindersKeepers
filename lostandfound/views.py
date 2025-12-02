@@ -1,6 +1,6 @@
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
-from django.shortcuts import render, redirect, get_object_or_404, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import FoundItem
 from .forms import FoundItemForm
@@ -34,15 +34,15 @@ def main_feed(request):
 @login_required
 def upload_item(request):
     if request.method == 'POST':
-        form = FoundItemForm(request.POST)
+        form = FoundItemForm(request.POST, request.FILES)
         if form.is_valid():
-            found_item = form.save(commit=False) 
-            found_item.user = request.user       
-            found_item.save()   
+            found_item = form.save(commit=False)
+            found_item.user = request.user
+            found_item.save()
             return redirect('main_feed')
     else:
         form = FoundItemForm()
-    return render(request, 'lostandfound/upload.html', {'form': form})
+    return render(request, 'lostandfound/upload.html', {'form': form})    
 
 def login_view(request):
     if request.method == "POST":
@@ -50,7 +50,7 @@ def login_view(request):
         if form.is_valid():
             user = form.get_user()
             login(request, user)
-            return redirect("home")   # or "main_feed" if you prefer
+            return redirect("home")
     else:
         form = AuthenticationForm()
 
@@ -59,19 +59,22 @@ def login_view(request):
 
 def signup(request):
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("login")
+        form = EmailUserCreationForm(request.POST)
+        try:
+            if form.is_valid():
+                form.save()
+                return redirect("login")
+        except Exception as e:
+            messages.error(request, f"Error creating account: {e}")
     else:
-        form = UserCreationForm()
+        form = EmailUserCreationForm()
 
     return render(request, "lostandfound/signup.html", {"form": form})
 
-#sends email: 
+
 def contact_post_owner(request, post_id):
     post = get_object_or_404(FoundItem, id=post_id)
-    owner_email = post.user.email  
+    owner_email = post.user.email
 
     if request.method == "POST":
         form = ContactPostOwnerForm(request.POST)
@@ -79,7 +82,6 @@ def contact_post_owner(request, post_id):
             sender_email = form.cleaned_data['sender_email']
             message = form.cleaned_data['message']
 
-            # send the email using Gmail setup
             try:
                 send_mail(
                     subject=f"Inquiry about: {post.title}",
@@ -91,7 +93,6 @@ def contact_post_owner(request, post_id):
                 return redirect('contact_success')
 
             except Exception as e:
-                # Show an error message on the same page
                 messages.error(request, f"Error sending email: {e}")
     else:
         form = ContactPostOwnerForm()
@@ -101,25 +102,11 @@ def contact_post_owner(request, post_id):
         'post': post
     })
 
+
 def post_detail(request, post_id):
     post = get_object_or_404(FoundItem, id=post_id)
     return render(request, 'lostandfound/post_detail.html', {'post': post})
 
+
 def contact_success(request):
     return render(request, 'lostandfound/contact_success.html')
-
-
-def signup(request):
-    if request.method == "POST":
-        form = EmailUserCreationForm(request.POST)  # or UserCreationForm
-        try:
-            if form.is_valid():
-                form.save()
-                return redirect("login")
-        except Exception as e:
-            # Catch any server-side exception (e.g., duplicate username)
-            messages.error(request, f"Error creating account: {e}")
-    else:
-        form = EmailUserCreationForm()
-
-    return render(request, "lostandfound/signup.html", {"form": form})

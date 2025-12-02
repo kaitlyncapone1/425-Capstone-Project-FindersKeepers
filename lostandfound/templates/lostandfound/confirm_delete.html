@@ -1,0 +1,16 @@
+{% extends 'lostandfound/base.html' %}
+
+{% block content %}
+<h2>Confirm Delete</h2>
+<p>Are you sure you want to delete "<strong>{{ item.title }}</strong>"?</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" style="padding: 10px 20px; background: #f44336; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Yes, Delete
+    </button>
+    <a href="{% url 'main_feed' %}" style="display: inline-block; padding: 10px 20px; background: #999; color: white; text-decoration: none; border-radius: 5px; margin-left: 10px;">
+        Cancel
+    </a>
+</form>
+{% endblock %}

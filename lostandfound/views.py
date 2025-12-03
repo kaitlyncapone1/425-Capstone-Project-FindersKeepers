@@ -27,7 +27,7 @@ def main_feed(request):
     if query:
         items = FoundItem.objects.filter(keywords__icontains=query).order_by('-date_found')
     else:
-        items = FoundItem.objects.all().order_by('-date_found')
+        items = FoundItem.objects.all().order_by('-created_at')
     return render(request, 'lostandfound/main_feed.html', {'items': items})
 
 

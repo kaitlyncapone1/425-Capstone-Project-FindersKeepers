@@ -12,4 +12,5 @@ urlpatterns = [
     path('post/<int:post_id>/', views.post_detail, name='post_detail'),  
     path('contact/<int:post_id>/', views.contact_post_owner, name='contact_post_owner'),
     path('contact/success/', views.contact_success, name='contact_success'),
+    path('post/<int:post_id>/delete/', views.delete_post, name='delete_post'),
 ]

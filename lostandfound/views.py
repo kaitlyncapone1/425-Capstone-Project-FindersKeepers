@@ -25,9 +25,9 @@ def feed(request):
 def main_feed(request):
     query = request.GET.get('q')
     if query:
-        items = FoundItem.objects.filter(keywords__icontains=query).order_by('-created_at')
+        items = FoundItem.objects.filter(keywords__icontains=query).order_by('-date_found')
     else:
-        items = FoundItem.objects.all().order_by('-created_at')
+        items = FoundItem.objects.all().order_by('-date_found')
     return render(request, 'lostandfound/main_feed.html', {'items': items})
 
 
@@ -110,3 +110,18 @@ def post_detail(request, post_id):
 
 def contact_success(request):
     return render(request, 'lostandfound/contact_success.html')
+
+# delete button 
+
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect
+from .models import FoundItem
+
+@login_required
+def delete_post(request, post_id):
+    post = get_object_or_404(FoundItem, id=post_id)
+
+    if request.user == post.user:
+        post.delete()
+    
+    return redirect('main_feed')

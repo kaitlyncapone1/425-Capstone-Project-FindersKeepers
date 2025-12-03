@@ -28,6 +28,10 @@ def main_feed(request):
         items = FoundItem.objects.filter(keywords__icontains=query).order_by('-date_found')
     else:
         items = FoundItem.objects.all().order_by('-date_found')
+
+    items = list(items)
+    items.reverse()
+    
     return render(request, 'lostandfound/main_feed.html', {'items': items})
 
 
